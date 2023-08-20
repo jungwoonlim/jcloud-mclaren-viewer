@@ -1,15 +1,27 @@
-import { useState, useRef } from 'react';
-import { useGLTF } from '@react-three/drei';
-import { RigidBody, vec3 } from '@react-three/rapier';
-import { useFrame } from '@react-three/fiber';
+import { useGLTF } from "@react-three/drei";
+import { useFrame, useLoader } from "@react-three/fiber";
+import { RigidBody, vec3 } from "@react-three/rapier";
+import { useRef, useState } from "react";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const Model = () => {
-  const { nodes, materials } = useGLTF(import.meta.env.BASE_URL + '/scene.glb');
+  const model = useLoader(
+    GLTFLoader,
+    import.meta.env.BASE_URL + 'model/scene.gltf',
+  );
   const rigidBody = useRef(null);
   const [smoothedCameraPosition] = useState(() => vec3());
   const [smoothedCameraTarget] = useState(() => vec3());
-
+  
   useFrame((state, delta) => {
+    const time = state.clock.getElapsedTime();
+    const group = model.scene.children[0].children[0].children[0].children[0];
+
+    group.children[1].rotation.x = time * 2;
+    group.children[2].rotation.x = time * 2;
+    group.children[3].rotation.x = time * 2;
+    group.children[4].rotation.x = time * 2;
+
     if (!rigidBody.current) return;
 
     const rigidBodyPosition = rigidBody.current.translation();
@@ -20,7 +32,9 @@ const Model = () => {
     cameraPosition.z += 2.5;
 
     const cameraTarget = vec3(rigidBodyPosition);
+    cameraTarget.x += 0.15;
     cameraTarget.y += 0.5;
+    cameraTarget.z += 0.25;
 
     smoothedCameraPosition.lerp(cameraPosition, 5 * delta);
     smoothedCameraTarget.lerp(cameraTarget, 5 * delta);
@@ -39,90 +53,11 @@ const Model = () => {
       angularDamping={0.5}
       position={[0, 0, 0]}
     >
-      <group dispose={null}>
-        <mesh
-          geometry={nodes.Object_6.geometry}
-          material={materials.PaletteMaterial001}
-          position={[-0.045, -0.058, -0.103]}
-          scale={0.648}
-        />
-        <mesh
-          geometry={nodes.Object_9.geometry}
-          material={materials['cockpit__spec_.001']}
-          position={[-0.045, -0.058, -0.103]}
-          scale={0.648}
-        />
-        <mesh
-          geometry={nodes.Object_14.geometry}
-          material={materials.PaletteMaterial002}
-          position={[-0.045, -0.058, -0.103]}
-          scale={0.648}
-        />
-        <mesh
-          geometry={nodes.Object_15.geometry}
-          material={materials.PaletteMaterial003}
-          position={[-0.045, -0.058, -0.103]}
-          scale={0.648}
-        />
-        <mesh
-          geometry={nodes.Object_19.geometry}
-          material={materials.PaletteMaterial004}
-          position={[-0.045, -0.058, -0.103]}
-          scale={0.648}
-        />
-        <mesh
-          geometry={nodes.Object_20.geometry}
-          material={materials.PaletteMaterial005}
-          position={[-0.045, -0.058, -0.103]}
-          scale={0.648}
-        />
-        <mesh
-          geometry={nodes.Object_29.geometry}
-          material={materials.PaletteMaterial006}
-          position={[-0.045, -0.058, -0.103]}
-          scale={0.648}
-        />
-        <mesh
-          geometry={nodes.Object_31.geometry}
-          material={materials['guages__spec_.001']}
-          position={[-0.045, -0.058, -0.103]}
-          scale={0.648}
-        />
-        <mesh
-          geometry={nodes.Object_32.geometry}
-          material={materials['carpet__spec_.001']}
-          position={[-0.045, -0.058, -0.103]}
-          scale={0.648}
-        />
-        <mesh
-          geometry={nodes.Object_33.geometry}
-          material={materials['mclarenint__spec.001']}
-          position={[-0.045, -0.058, -0.103]}
-          scale={0.648}
-        />
-        <mesh
-          geometry={nodes.Object_38.geometry}
-          material={materials['Material.069']}
-          position={[-0.045, -0.058, -0.103]}
-          scale={0.648}
-        />
-        <mesh
-          geometry={nodes.Object_55.geometry}
-          material={materials['Tires2.004']}
-          position={[-0.045, -0.058, -0.103]}
-          scale={0.648}
-        />
-        <mesh
-          geometry={nodes.Object_58.geometry}
-          material={materials['BRAKES_4K.004']}
-          position={[-0.045, -0.058, -0.103]}
-          scale={0.648}
-        />
-      </group>
+      <primitive object={model.scene} />;
     </RigidBody>
   );
 };
 
-useGLTF.preload('/scene.glb');
+useGLTF.preload('/jcloud-mclaren-viewer/model/scene.gltf');
 
 export { Model };

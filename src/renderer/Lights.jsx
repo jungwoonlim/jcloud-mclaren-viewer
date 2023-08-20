@@ -24,6 +24,14 @@ export const Lights = () => {
     <>
       <spotLight
         color={[1, 1, 1]}
+        intensity={1}
+        angle={1}
+        penumbra={1}
+        position={[0, 1, 0]}
+        castShadow
+      />
+      <spotLight
+        color={[1, 1, 1]}
         intensity={0.5}
         angle={0.5}
         penumbra={0.5}
@@ -36,7 +44,7 @@ export const Lights = () => {
         intensity={0.3}
         angle={0.9}
         penumbra={0.1}
-        position={[-20, 3, 0]}
+        position={[-100, 1, 0]}
         castShadow
       />
       <spotLight
