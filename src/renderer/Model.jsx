@@ -10,10 +10,12 @@ const Model = () => {
     import.meta.env.BASE_URL + 'model/scene.gltf',
   );
   const rigidBody = useRef(null);
-  const [smoothedCameraPosition] = useState(() => vec3());
-  const [smoothedCameraTarget] = useState(() => vec3());
+  const [smoothedCameraPosition] = useState(() => vec3([2.5, 1.5, 2.5]));
+  const [smoothedCameraTarget] = useState(() => vec3([0.15, 0.5, 0.25]));
   
   useFrame((state, delta) => {
+    if (!rigidBody.current) return;
+    
     const time = state.clock.getElapsedTime();
     const group = model.scene.children[0].children[0].children[0].children[0];
 
@@ -21,8 +23,6 @@ const Model = () => {
     group.children[2].rotation.x = time * 2;
     group.children[3].rotation.x = time * 2;
     group.children[4].rotation.x = time * 2;
-
-    if (!rigidBody.current) return;
 
     const rigidBodyPosition = rigidBody.current.translation();
     const cameraPosition = vec3(rigidBodyPosition);
@@ -51,7 +51,7 @@ const Model = () => {
       friction={1} 
       linearDamping={0.5}
       angularDamping={0.5}
-      position={[0, 0, 0]}
+      position={[0, 2, 0]}
     >
       <primitive object={model.scene} />;
     </RigidBody>

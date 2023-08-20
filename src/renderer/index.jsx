@@ -1,4 +1,4 @@
-import { Physics } from "@react-three/rapier";
+import { CuboidCollider, Physics } from "@react-three/rapier";
 import { PerspectiveCamera } from "@react-three/drei";
 import { Ground } from "./Ground";
 import { Lights } from "./Lights";
@@ -10,7 +10,7 @@ export const Renderer = () => {
       <PerspectiveCamera
         makeDefault
         fov={50}
-        position={[0, 0, 0]}
+        position={[0, 7, 0]}
       />
       <color
         args={[0, 0, 0]}
@@ -19,6 +19,7 @@ export const Renderer = () => {
       <Lights />
       <Ground />
       <Model />
+      <CuboidCollider position={[0, -2, 0]} args={[20, 0.5, 20]} />
     </Physics>
   );
 };

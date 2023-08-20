@@ -5,3 +5,22 @@ html, body, #root, canvas {
   overflow: hidden;
   background-color: black;
 }
+
+.loading {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: large;
+  text-align: center;
+}
+
+.loading p {
+  color: rgba(78, 71, 219, 1);
+}
+
+.loading span {
+  color: rgba(71, 136, 220, 1);
+}
