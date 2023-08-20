@@ -1,3 +1,4 @@
+import { Physics } from "@react-three/rapier";
 import { PerspectiveCamera } from "@react-three/drei";
 import { Ground } from "./Ground";
 import { Lights } from "./Lights";
@@ -5,11 +6,11 @@ import { Model } from "./Model";
 
 export const Renderer = () => {
   return (
-    <>
+    <Physics debug={false}>
       <PerspectiveCamera
         makeDefault
         fov={50}
-        position={[4, 2, 4]}
+        position={[0, 0, 0]}
       />
       <color
         args={[0, 0, 0]}
@@ -18,6 +19,6 @@ export const Renderer = () => {
       <Lights />
       <Ground />
       <Model />
-    </>
+    </Physics>
   );
 };
