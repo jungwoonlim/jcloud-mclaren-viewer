@@ -39,7 +39,7 @@ export const Ground = () => {
         castShadow
         receiveShadow
       >
-        <planeGeometry args={[30, 30]} />
+        <planeGeometry args={[50, 50]} />
         <MeshReflectorMaterial
           envMapIntensity={0}
           normalMap={normalMap}

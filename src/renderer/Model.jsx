@@ -42,7 +42,7 @@ const Model = () => {
     const cameraTarget = vec3(rigidBodyPosition);
     cameraTarget.x += 0.15;
     cameraTarget.y += 0.5;
-    cameraTarget.z += 0.25;
+    cameraTarget.z += 0.75;
 
     state.camera.position.copy(cameraPosition);
     state.camera.lookAt(cameraTarget);

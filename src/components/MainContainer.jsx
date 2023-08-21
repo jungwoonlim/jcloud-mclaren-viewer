@@ -4,9 +4,11 @@ import { ModelContainer } from "./ModelContainer";
 export const MainContainer = () => {
   return (
     <div className="main-container">
-      <Header />
-      <ModelContainer />
-      <div>Footer</div>
+      <div className="main-wrapper">
+        <Header />
+        <ModelContainer />
+        <div>Footer</div>
+      </div>
     </div>
   );
 };
