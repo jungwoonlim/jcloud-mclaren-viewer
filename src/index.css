@@ -8,6 +8,7 @@ html, body, #root, canvas {
   background-color: black;
 }
 
+/* loading */
 .loading {
   position: absolute;
   width: 20rem;
@@ -27,18 +28,25 @@ html, body, #root, canvas {
   color: rgba(71, 136, 220, 1);
 }
 
+/* main container */
 .main-container {
   position: absolute;
   top: 0;
   left: 0;
   color: white;
   width: 100%;
+  height: 100vh;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
+/* header */
 .main-container header {
   padding-top: 10px;
   width: 100%;
+  height: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;  
@@ -72,4 +80,58 @@ html, body, #root, canvas {
 
 .main-container header .logo img {
   width: 100%
+}
+
+/* model container */
+.main-container .model-container {
+  position: relative;
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-container .model-container .model-info {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.main-container .model-container .model-info h1 {
+  font-size: 3rem;
+}
+
+.main-container .model-container .model-info h3 {
+  font-size: 1rem;
+}
+
+.main-container .model-container .model-info pre {
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  white-space: pre-wrap;
+}
+
+.main-container .model-container .change-position {
+  position: relative;
+  width: 30%;
+  height: 100%;
+}
+
+.main-container .model-container .change-position ul {
+  position: relative;
+  height: 100%;
+  list-style-type: none;
+}
+
+.main-container .model-container .change-position ul li {
+  position: relative;
+  width: 100%;
+  height: 16.666667%;
+  overflow: hidden;
+  cursor: pointer;
 }

@@ -1,10 +1,11 @@
 import { Header } from "./Header";
+import { ModelContainer } from "./ModelContainer";
 
 export const MainContainer = () => {
   return (
     <div className="main-container">
       <Header />
-      <div>Body</div>
+      <ModelContainer />
       <div>Footer</div>
     </div>
   );
