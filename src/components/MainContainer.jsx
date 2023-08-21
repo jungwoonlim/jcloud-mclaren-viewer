@@ -1,3 +1,4 @@
+import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { ModelContainer } from "./ModelContainer";
 
@@ -7,7 +8,7 @@ export const MainContainer = () => {
       <div className="main-wrapper">
         <Header />
         <ModelContainer />
-        <div>Footer</div>
+        <Footer />
       </div>
     </div>
   );
