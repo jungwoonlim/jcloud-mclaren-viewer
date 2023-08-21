@@ -101,7 +101,7 @@ a {
   position: relative;
   padding: 0 50px;
   width: calc(100% - 100px);
-  height: 80%;
+  height: calc(100% - 280px);
   display: flex;
 }
 
@@ -193,7 +193,7 @@ a {
 
 .main-container footer {
   position: relative;
-  height: 400px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -214,4 +214,96 @@ a {
 .main-container footer .user-name a {
   color: #f0f0f0;
   text-decoration: underline;
+}
+
+/* Pad */
+@media only screen and (max-width: 820px) {
+  .main-container .model-container .model-info {
+    width: 100%;
+  }
+
+  .main-container .model-container .model-info h1 {
+    font-size: 8em;
+  }
+  
+  .main-container .model-container .model-info h3 {
+    font-size: 2.5em;
+  }
+  
+  .main-container .model-container .model-info pre {
+    font-size: 1em;
+  }
+
+  .main-container .model-container .change-position ul li {
+    pointer-events: none;
+  }
+
+  .main-container .model-container .change-position ul li:hover span {
+    opacity: 0;
+  }
+
+  .main-container .model-container .change-position ul li:hover svg {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .main-container header .logo {
+    width: 200px;
+  }
+
+  .main-container header::before {
+    left: 25px;
+    width: 15%;
+  }
+  
+  .main-container header::after {
+    right: 25px;
+    width: 15%;
+  }
+
+  .main-container .model-container {
+    padding: 0 25px;
+    width: calc(100% - 50px);
+    height: calc(100% - 230px);
+    flex-direction: column;
+  }
+
+  .main-container .model-container .model-info h1 {
+    font-size: 3.5em;
+  }
+  
+  .main-container .model-container .model-info h3 {
+    font-size: 1.2em;
+  }
+  
+  .main-container .model-container .model-info pre {
+    word-break: break-all;
+  }
+
+  .main-container .model-container .change-position {
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 30px;
+  }
+
+  .main-container .model-container .change-position ul {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    margin: 0 auto;
+    padding: 0;
+  }
+  
+  .main-container .model-container .change-position ul li {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .main-container footer {
+    height: 150px;
+    font-size: 0.8em;
+  }
 }
