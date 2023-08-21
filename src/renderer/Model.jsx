@@ -1,7 +1,8 @@
 import { useGLTF } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
 import { RigidBody, vec3 } from "@react-three/rapier";
-import { useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { Mesh } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const Model = () => {
@@ -10,9 +11,16 @@ const Model = () => {
     import.meta.env.BASE_URL + 'model/scene.gltf',
   );
   const rigidBody = useRef(null);
-  const [smoothedCameraPosition] = useState(() => vec3([2.5, 1.5, 2.5]));
-  const [smoothedCameraTarget] = useState(() => vec3([0.15, 0.5, 0.25]));
   
+  useEffect(() => {
+    model.scene.traverse((object) => {
+      if (object instanceof Mesh) {
+        object.castShadow = true;
+        object.material.envMapIntensity = 20;
+      }
+    });
+  }, [model]);
+
   useFrame((state, delta) => {
     if (!rigidBody.current) return;
     
@@ -36,11 +44,8 @@ const Model = () => {
     cameraTarget.y += 0.5;
     cameraTarget.z += 0.25;
 
-    smoothedCameraPosition.lerp(cameraPosition, 5 * delta);
-    smoothedCameraTarget.lerp(cameraTarget, 5 * delta);
-
-    state.camera.position.copy(smoothedCameraPosition);
-    state.camera.lookAt(smoothedCameraTarget);
+    state.camera.position.copy(cameraPosition);
+    state.camera.lookAt(cameraTarget);
   });
 
   return (
@@ -51,9 +56,8 @@ const Model = () => {
       friction={1} 
       linearDamping={0.5}
       angularDamping={0.5}
-      position={[0, 2, 0]}
     >
-      <primitive object={model.scene} />;
+      <primitive object={model.scene} />
     </RigidBody>
   );
 };
