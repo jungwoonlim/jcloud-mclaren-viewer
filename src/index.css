@@ -171,8 +171,10 @@ a {
   right: 20px;
   transform: scale(0.5);
   transition: 0.2s;
+  color: rgba(255, 50, 10, 0.8);
   background-color: rgba(255, 255, 255, 1);
   border-radius: 50%;
+  filter: drop-shadow(0px 10px 10px rgba(255, 0, 0, 1));
 }
 
 .main-container .model-container .change-position ul li .car,
@@ -182,24 +184,29 @@ a {
   right: 20px;
   transform: scale(0);
   transition: 0.2s;
-  color: darkgray;
+  color: rgba(255, 255, 255, 0.9);
+  filter: drop-shadow(10px 10px 10px rgba(255, 0, 0, 1));
 }
 
 .main-container .model-container .change-position ul li:hover .circle {
   transform: scale(2.5);
   background-color: rgba(255, 255, 255, 0);
+  filter: drop-shadow(0px 2px 2px rgba(255, 0, 0, 1));
 }
 
 .main-container .model-container .change-position ul li:hover .car {
   transform: scale(1);
+  filter: drop-shadow(0px 2px 2px rgba(255, 0, 0, 1));
 }
 
 .main-container .model-container .change-position ul li:hover .reset {
   transform: scale(1.5);
+  filter: drop-shadow(0px 2px 2px rgba(255, 0, 0, 1));
 }
 
 .main-container .model-container .change-position ul li:hover .reverse  {
   transform: scaleX(-1);
+  filter: drop-shadow(0px 2px 2px rgba(255, 0, 0, 1));
 }
 
 .main-container footer {
