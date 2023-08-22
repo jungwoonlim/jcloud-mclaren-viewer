@@ -17,23 +17,23 @@ export const threeSlice = createSlice({
       state.targetPosition = initialState.targetPosition;
     },
     front: state => {
-      state.cameraPosition = { x: 0, y: 0, z: 2.5 };
-      state.targetPosition = { x: 0.15, y: 0.5, z: 0.75 };
+      state.cameraPosition = { x: 0, y: 2, z: 4 };
+      state.targetPosition = { x: 0, y: 0.5, z: 0 };
     },
     back: state => {
-      state.cameraPosition = { x: 0, y: 0, z: -2.5 };
-      state.targetPosition = { x: 0.15, y: 0.5, z: 0.75 };
+      state.cameraPosition = { x: 0, y: 2, z: -4 };
+      state.targetPosition = { x: 0, y: 0.5, z: 0 };
     },
-    left: state => {
-      state.cameraPosition = { x: -2.5, y: 0, z: 0 };
-      state.targetPosition = { x: 0.15, y: 0.5, z: 0.75 };
+    inside: state => {
+      state.cameraPosition = { x: 0, y: 0.9, z: -0.2 };
+      state.targetPosition = { x: 0.2, y: 0.6, z: 0.8 };
     },
-    right: state => {
-      state.cameraPosition = { x: 2.5, y: 0, z: 0 };
-      state.targetPosition = { x: 0.15, y: 0.5, z: 0.75 };
-    },
+    side: state => {
+      state.cameraPosition = { x: 4, y: 1.5, z: 0 };
+      state.targetPosition = { x: 0, y: 1, z: 0 };
+    }
   }
 });
 
-export const { reset, front, back, left, right } = threeSlice.actions;
+export const { reset, front, back, inside, side } = threeSlice.actions;
 export default threeSlice.reducer;

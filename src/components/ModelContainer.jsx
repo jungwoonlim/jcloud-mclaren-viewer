@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { reset, front, back, left, right } from '../store/threeSlice';
+import { reset, front, back, inside, side } from '../store/threeSlice';
 import { BiReset } from 'react-icons/bi';
-import { FaCarRear} from 'react-icons/fa6';
+import { PiSteeringWheelFill } from 'react-icons/pi';
+import { FaCarRear } from 'react-icons/fa6';
 import { VscCircleLarge } from 'react-icons/vsc';
 import { FaCar, FaCarSide } from 'react-icons/fa';
 
@@ -59,13 +60,13 @@ export const ModelContainer = () => {
             <VscCircleLarge className="circle" />
             <FaCarSide className="car" />
           </li>
-          <li onClick={() => dispatch(left())}>
+          <li onClick={() => dispatch(side())}>
             <VscCircleLarge className="circle" />
             <FaCarRear className="car" />
           </li>
-          <li onClick={() => dispatch(right())}>
+          <li onClick={() => dispatch(inside())}>
             <VscCircleLarge className="circle" />
-            <FaCarSide className="reverse" />
+            <PiSteeringWheelFill className="inside" />
           </li>
         </ul>
       </div>

@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { useGLTF } from '@react-three/drei';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { RigidBody, vec3 } from '@react-three/rapier';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Mesh } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
@@ -13,6 +13,8 @@ const Model = () => {
   );
   const rigidBody = useRef(null);
   const position = useSelector(state => state.position);
+  const [smoothedCameraPosition] = useState(() => vec3());
+  const [smoothedCameraTarget] = useState(() => vec3());
   
   useEffect(() => {
     model.scene.traverse((object) => {
@@ -23,7 +25,7 @@ const Model = () => {
     });
   }, [model]);
 
-  useFrame((state) => {
+  useFrame((state, delta) => {
     if (!rigidBody.current || !position) return;
     
     const time = state.clock.getElapsedTime();
@@ -41,7 +43,6 @@ const Model = () => {
 
     const rigidBodyPosition = rigidBody.current.translation();
     const cameraPosition = vec3(rigidBodyPosition);
-
     cameraPosition.x += nextCameraPosition.x;
     cameraPosition.y += nextCameraPosition.y;
     cameraPosition.z += nextCameraPosition.z;
@@ -51,8 +52,11 @@ const Model = () => {
     cameraTarget.y += nextTargetPosition.y;
     cameraTarget.z += nextTargetPosition.z;
 
-    state.camera.position.copy(cameraPosition);
-    state.camera.lookAt(cameraTarget);
+    smoothedCameraPosition.lerp(cameraPosition, 5 * delta);
+    smoothedCameraTarget.lerp(cameraTarget, 5 * delta);
+
+    state.camera.position.copy(smoothedCameraPosition);
+    state.camera.lookAt(smoothedCameraTarget);
   });
 
   return (
