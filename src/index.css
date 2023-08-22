@@ -225,15 +225,18 @@ a {
   animation: animate 0.5s linear infinite;
 }
 
+.main-container .model-container .change-position ul li.active .circle,
 .main-container .model-container .change-position ul li:hover .circle {
   width: 50px;
   padding: 10px;
 }
 
+.main-container .model-container .change-position ul li.active .circle::before,
 .main-container .model-container .change-position ul li:hover .circle::before {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
+.main-container .model-container .change-position ul li.active .circle span,
 .main-container .model-container .change-position ul li:hover .circle span {
   top: calc(-50% + 20px);
   right: calc(-50% + 40px);
@@ -241,6 +244,9 @@ a {
   animation: animate 1s linear infinite;
 }
 
+.main-container .model-container .change-position ul li.active .circle,
+.main-container .model-container .change-position ul li.active .circle::before,
+.main-container .model-container .change-position ul li.active .circle span,
 .main-container .model-container .change-position ul li:hover .circle,
 .main-container .model-container .change-position ul li:hover .circle::before,
 .main-container .model-container .change-position ul li:hover .circle span {
@@ -253,6 +259,7 @@ a {
   transition: 0.2s;
 }
 
+.main-container .model-container .change-position ul li.active span.word,
 .main-container .model-container .change-position ul li:hover span.word {
   right: calc(50px - 30px);
   transform: scale(1);

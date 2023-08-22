@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { reset, front, back, inside, side } from '../store/threeSlice';
 
-const Label = ({ btnEvent, text }) => {
+const Label = ({ btnEvent, text, onMouse }) => {
   const dispatch = useDispatch();
+  const position = useSelector(state => state.position);
 
   return (
     <li
+      className={!onMouse && position.checked === text ? 'active' : ''}
       onClick={(e) => {
         e.preventDefault();
         dispatch(btnEvent);
@@ -32,6 +34,7 @@ export const ModelContainer = () => {
   const [widthSize] = useState(window.innerWidth);
   const [description, setDescription] = useState('');
   const [count, setCount] = useState(0);
+  const [onMouse, setOnMouse] = useState(false);
 
   const word = [
     ` The McLaren MP4-12C, later known simply as the McLaren 12C, is a sports car that was designed and manufactured by McLaren Automotive. It was the first ever production car wholly designed and built by McLaren, and their first production road car since the McLaren F1, which was last built in 1998. The car's final design was unveiled in September 2009 and was launched in mid-2011.`,
@@ -67,12 +70,15 @@ export const ModelContainer = () => {
         </pre>
       </div>
       <div className="change-position">
-        <ul>
-          <Label btnEvent={reset()} text="Reset" />
-          <Label btnEvent={front()} text="Front" />
-          <Label btnEvent={back()} text="Back" />
-          <Label btnEvent={side()} text="Side" />
-          <Label btnEvent={inside()} text="Seat" />
+        <ul
+          onMouseMove={() => setOnMouse(true)}
+          onMouseLeave={() => setOnMouse(false)}
+        >
+          <Label btnEvent={reset()} text="Reset" onMouse={onMouse} />
+          <Label btnEvent={front()} text="Front" onMouse={onMouse} />
+          <Label btnEvent={back()} text="Back" onMouse={onMouse} />
+          <Label btnEvent={side()} text="Side" onMouse={onMouse} />
+          <Label btnEvent={inside()} text="Seat" onMouse={onMouse} />
         </ul>
       </div>
     </div>
