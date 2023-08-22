@@ -8,11 +8,11 @@ const Label = ({ btnEvent, text }) => {
   return (
     <li
       onClick={(e) => {
-        console.log(e);
-         dispatch(btnEvent);
+        e.preventDefault();
+        dispatch(btnEvent);
       }}
-      onTouchEnd={(e) => {
-        console.log(e);
+      onTouchStart={(e) => {
+        e.preventDefault();
         dispatch(btnEvent);
       }}
     >
