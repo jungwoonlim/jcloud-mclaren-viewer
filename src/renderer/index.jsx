@@ -1,8 +1,8 @@
-import { CuboidCollider, Physics } from "@react-three/rapier";
-import { PerspectiveCamera } from "@react-three/drei";
-import { Ground } from "./Ground";
-import { Lights } from "./Lights";
-import { Model } from "./Model";
+import { CuboidCollider, Physics } from '@react-three/rapier';
+import { PerspectiveCamera } from '@react-three/drei';
+import { Ground } from './Ground';
+import { Lights } from './Lights';
+import { Model } from './Model';
 
 export const Renderer = () => {
   return (

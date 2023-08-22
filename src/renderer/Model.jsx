@@ -1,9 +1,10 @@
-import { useGLTF } from "@react-three/drei";
-import { useFrame, useLoader } from "@react-three/fiber";
-import { RigidBody, vec3 } from "@react-three/rapier";
-import { useEffect, useRef } from "react";
-import { Mesh } from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { useSelector } from 'react-redux';
+import { useGLTF } from '@react-three/drei';
+import { useFrame, useLoader } from '@react-three/fiber';
+import { RigidBody, vec3 } from '@react-three/rapier';
+import { useEffect, useRef } from 'react';
+import { Mesh } from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 const Model = () => {
   const model = useLoader(
@@ -11,6 +12,7 @@ const Model = () => {
     import.meta.env.BASE_URL + 'model/scene.gltf',
   );
   const rigidBody = useRef(null);
+  const position = useSelector(state => state.position);
   
   useEffect(() => {
     model.scene.traverse((object) => {
@@ -21,8 +23,8 @@ const Model = () => {
     });
   }, [model]);
 
-  useFrame((state, delta) => {
-    if (!rigidBody.current) return;
+  useFrame((state) => {
+    if (!rigidBody.current || !position) return;
     
     const time = state.clock.getElapsedTime();
     const group = model.scene.children[0].children[0].children[0].children[0];
@@ -32,17 +34,22 @@ const Model = () => {
     group.children[3].rotation.x = time * 2;
     group.children[4].rotation.x = time * 2;
 
+    const {
+      cameraPosition: nextCameraPosition,
+      targetPosition: nextTargetPosition,
+    } = position;
+
     const rigidBodyPosition = rigidBody.current.translation();
     const cameraPosition = vec3(rigidBodyPosition);
 
-    cameraPosition.x += 2.5;
-    cameraPosition.y += 1.5;
-    cameraPosition.z += 2.5;
+    cameraPosition.x += nextCameraPosition.x;
+    cameraPosition.y += nextCameraPosition.y;
+    cameraPosition.z += nextCameraPosition.z;
 
     const cameraTarget = vec3(rigidBodyPosition);
-    cameraTarget.x += 0.15;
-    cameraTarget.y += 0.5;
-    cameraTarget.z += 0.75;
+    cameraTarget.x += nextTargetPosition.x;
+    cameraTarget.y += nextTargetPosition.y;
+    cameraTarget.z += nextTargetPosition.z;
 
     state.camera.position.copy(cameraPosition);
     state.camera.lookAt(cameraTarget);

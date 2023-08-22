@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { useFrame, useLoader } from "@react-three/fiber";
-import { MeshReflectorMaterial } from "@react-three/drei";
-import { LinearEncoding, RepeatWrapping, TextureLoader } from "three";
-import { RigidBody } from "@react-three/rapier";
+import { useEffect } from 'react';
+import { useFrame, useLoader } from '@react-three/fiber';
+import { MeshReflectorMaterial } from '@react-three/drei';
+import { LinearEncoding, RepeatWrapping, TextureLoader } from 'three';
+import { RigidBody } from '@react-three/rapier';
 
 export const Ground = () => {
   const [roughnessMap, normalMap] = useLoader(TextureLoader, [

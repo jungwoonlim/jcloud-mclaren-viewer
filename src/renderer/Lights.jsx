@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useState } from 'react';
+import { useFrame } from '@react-three/fiber';
 
 export const Lights = () => {
   const [position, setPosition] = useState([5, 5, 0]);
