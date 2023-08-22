@@ -1,17 +1,37 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { reset, front, back, inside, side } from '../store/threeSlice';
-import { BiReset } from 'react-icons/bi';
-import { PiSteeringWheelFill } from 'react-icons/pi';
-import { FaCarRear } from 'react-icons/fa6';
-import { VscCircleLarge } from 'react-icons/vsc';
-import { FaCar, FaCarSide } from 'react-icons/fa';
+
+const Label = ({ btnEvent, text }) => {
+  const dispatch = useDispatch();
+
+  return (
+    <li
+      onClick={(e) => {
+        console.log(e);
+         dispatch(btnEvent);
+      }}
+      onTouchEnd={(e) => {
+        console.log(e);
+        dispatch(btnEvent);
+      }}
+    >
+      <div className="circle">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <span className="word">{text}</span>
+    </li>
+  );
+};
 
 export const ModelContainer = () => {
   const [widthSize] = useState(window.innerWidth);
   const [description, setDescription] = useState('');
   const [count, setCount] = useState(0);
-  const dispatch = useDispatch();
 
   const word = [
     ` The McLaren MP4-12C, later known simply as the McLaren 12C, is a sports car that was designed and manufactured by McLaren Automotive. It was the first ever production car wholly designed and built by McLaren, and their first production road car since the McLaren F1, which was last built in 1998. The car's final design was unveiled in September 2009 and was launched in mid-2011.`,
@@ -48,26 +68,11 @@ export const ModelContainer = () => {
       </div>
       <div className="change-position">
         <ul>
-          <li onClick={() => dispatch(reset())}>
-            <VscCircleLarge className="circle" />
-            <BiReset className="reset" />
-          </li>
-          <li onClick={() => dispatch(front())}>
-            <VscCircleLarge className="circle" />
-            <FaCar className="car" />
-          </li>
-          <li onClick={() => dispatch(back())}>
-            <VscCircleLarge className="circle" />
-            <FaCarSide className="car" />
-          </li>
-          <li onClick={() => dispatch(side())}>
-            <VscCircleLarge className="circle" />
-            <FaCarRear className="car" />
-          </li>
-          <li onClick={() => dispatch(inside())}>
-            <VscCircleLarge className="circle" />
-            <PiSteeringWheelFill className="inside" />
-          </li>
+          <Label btnEvent={reset()} text="Reset" />
+          <Label btnEvent={front()} text="Front" />
+          <Label btnEvent={back()} text="Back" />
+          <Label btnEvent={side()} text="Side" />
+          <Label btnEvent={inside()} text="Seat" />
         </ul>
       </div>
     </div>

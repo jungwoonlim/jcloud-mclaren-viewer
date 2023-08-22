@@ -14,7 +14,7 @@ export const App = () => {
 
   return (
     <Suspense fallback={<Loading />}>
-      <Canvas shadows>
+      <Canvas shadows className={progress >= 100 ? '' : 'hide'}>
         <Renderer />
       </Canvas>
       {progress >= 100 ? <MainContainer /> : <></>}
