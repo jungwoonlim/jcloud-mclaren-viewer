@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { CgShapeCircle } from 'react-icons/cg';
+import { VscCircleLarge } from 'react-icons/vsc';
+import { BiReset } from 'react-icons/bi';
+import { GrPowerReset } from 'react-icons/gr';
+import { FaCar, FaCarSide } from 'react-icons/fa';
+import { FaCarRear} from 'react-icons/fa6';
 
 export const ModelContainer = () => {
   const [widthSize] = useState(window.innerWidth);
@@ -42,24 +46,24 @@ export const ModelContainer = () => {
       <div className="change-position">
         <ul>
           <li>
-            <CgShapeCircle />
-            <span>Origin</span>
+            <VscCircleLarge className="circle" />
+            <BiReset className="reset" />
           </li>
           <li>
-            <CgShapeCircle />
-            <span>Front</span>
+            <VscCircleLarge className="circle" />
+            <FaCar className="car" />
           </li>
           <li>
-            <CgShapeCircle />
-            <span>Back</span>
+            <VscCircleLarge className="circle" />
+            <FaCarSide className="car" />
           </li>
           <li>
-            <CgShapeCircle />
-            <span>Left</span>
+            <VscCircleLarge className="circle" />
+            <FaCarRear className="car" />
           </li>
           <li>
-            <CgShapeCircle />
-            <span>Right</span>
+            <VscCircleLarge className="circle" />
+            <FaCarSide className="reverse" />
           </li>
         </ul>
       </div>
