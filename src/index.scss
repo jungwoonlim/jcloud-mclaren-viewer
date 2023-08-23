@@ -57,6 +57,10 @@ a {
   color: white;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1));
 
+  @media (max-height: 900px) and (min-width: 820px) {
+    opacity: 0;
+  }
+
   .main-wrapper {
     position: relative;
     width: 100%;

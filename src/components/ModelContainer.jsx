@@ -17,10 +17,6 @@ const Label = ({ btnEvent, target, isHover }) => {
         e.preventDefault();
         dispatch(btnEvent);
       }}
-      onTouchMove={(e) => {
-        e.preventDefault();
-        dispatch(btnEvent);
-      }}
       onTouchEnd={(e) => {
         e.preventDefault();
         dispatch(btnEvent);
