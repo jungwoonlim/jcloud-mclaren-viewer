@@ -19,7 +19,10 @@ export const Renderer = () => {
       <Lights />
       <Ground />
       <Model />
-      <CuboidCollider position={[0, -2, 0]} args={[20, 0.5, 20]} />
+      <CuboidCollider
+        args={[20, 0.5, 20]}
+        position={[0, -2, 0]}
+      />
     </Physics>
   );
 };

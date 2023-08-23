@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { reset, front, back, inside, side } from '../store/threeSlice';
 
-const Label = ({ btnEvent, text, onMouse }) => {
+const Label = ({ btnEvent, target, isHover }) => {
   const dispatch = useDispatch();
   const position = useSelector(state => state.position);
 
   return (
     <li
-      className={!onMouse && position.checked === text ? 'active' : ''}
+      className={!isHover && position.checked === target ? 'active' : ''}
       onClick={(e) => {
         e.preventDefault();
         dispatch(btnEvent);
@@ -25,16 +25,16 @@ const Label = ({ btnEvent, text, onMouse }) => {
         <span></span>
         <span></span>
       </div>
-      <span className="word">{text}</span>
+      <span className="word">{target}</span>
     </li>
   );
 };
 
 export const ModelContainer = () => {
   const [widthSize] = useState(window.innerWidth);
-  const [description, setDescription] = useState('');
   const [count, setCount] = useState(0);
-  const [onMouse, setOnMouse] = useState(false);
+  const [isHover, setIsHover] = useState(false);
+  const [description, setDescription] = useState('');
 
   const word = [
     ` The McLaren MP4-12C, later known simply as the McLaren 12C, is a sports car that was designed and manufactured by McLaren Automotive. It was the first ever production car wholly designed and built by McLaren, and their first production road car since the McLaren F1, which was last built in 1998. The car's final design was unveiled in September 2009 and was launched in mid-2011.`,
@@ -71,14 +71,34 @@ export const ModelContainer = () => {
       </div>
       <div className="change-position">
         <ul
-          onMouseMove={() => setOnMouse(true)}
-          onMouseLeave={() => setOnMouse(false)}
+          onMouseMove={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
         >
-          <Label btnEvent={reset()} text="Reset" onMouse={onMouse} />
-          <Label btnEvent={front()} text="Front" onMouse={onMouse} />
-          <Label btnEvent={back()} text="Back" onMouse={onMouse} />
-          <Label btnEvent={side()} text="Side" onMouse={onMouse} />
-          <Label btnEvent={inside()} text="Seat" onMouse={onMouse} />
+          <Label
+            target="Reset"
+            isHover={isHover}
+            btnEvent={reset()}
+          />
+          <Label
+            target="Front"
+            isHover={isHover}
+            btnEvent={front()}
+          />
+          <Label
+            target="Back"
+            isHover={isHover}
+            btnEvent={back()}
+          />
+          <Label
+            target="Side"
+            isHover={isHover}
+            btnEvent={side()}
+          />
+          <Label
+            target="Seat"
+            isHover={isHover}
+            btnEvent={inside()}
+          />
         </ul>
       </div>
     </div>
