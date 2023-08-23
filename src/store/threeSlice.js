@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  checked: 'Reset',
+  checked: 'Main',
   cameraPosition: { x: 2.5, y: 1.5, z: 2.5 },
   targetPosition: { x: 0.15, y: 0.5, z: 0.75 },
 };
@@ -10,8 +10,8 @@ export const threeSlice = createSlice({
   name: 'three-slice',
   initialState,
   reducers: {
-    reset: state => {
-      state.checked = 'Reset';
+    main: state => {
+      state.checked = 'Main';
       state.cameraPosition = initialState.cameraPosition;
       state.targetPosition = initialState.targetPosition;
     },
@@ -38,5 +38,5 @@ export const threeSlice = createSlice({
   }
 });
 
-export const { reset, front, back, inside, side } = threeSlice.actions;
+export const { main, front, back, inside, side } = threeSlice.actions;
 export default threeSlice.reducer;

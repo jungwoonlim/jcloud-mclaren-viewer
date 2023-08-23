@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { reset, front, back, inside, side } from '../store/threeSlice';
+import { main, front, back, inside, side } from '../store/threeSlice';
 
 const Label = ({ btnEvent, target, isHover }) => {
   const dispatch = useDispatch();
@@ -80,9 +80,9 @@ export const ModelContainer = () => {
           onMouseLeave={() => setIsHover(false)}
         >
           <Label
-            target="Reset"
+            target="Main"
             isHover={isHover}
-            btnEvent={reset()}
+            btnEvent={main()}
           />
           <Label
             target="Front"
