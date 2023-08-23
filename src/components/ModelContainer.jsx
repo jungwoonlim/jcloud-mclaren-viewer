@@ -18,14 +18,16 @@ const Label = ({ btnEvent, target, isHover }) => {
         dispatch(btnEvent);
       }}
     >
-      <div className="circle">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+      <div className="label-wrapper">
+       <div className="circle">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <span className="word">{target}</span>
       </div>
-      <span className="word">{target}</span>
     </li>
   );
 };
@@ -64,7 +66,6 @@ export const ModelContainer = () => {
         <h1>McLAREN</h1>
         <h3>MP4-12C Ultimate</h3>
         <pre>
-          {widthSize}
           {description}
           {description.length === word.length ? '' : '_'}
         </pre>
