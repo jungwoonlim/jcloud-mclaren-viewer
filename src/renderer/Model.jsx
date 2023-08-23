@@ -15,7 +15,8 @@ const Model = () => {
   const position = useSelector(state => state.position);
   const [smoothedCameraPosition] = useState(() => vec3());
   const [smoothedCameraTarget] = useState(() => vec3());
-  
+  const [widthSize] = useState(window.innerWidth);
+
   useEffect(() => {
     model.scene.traverse((object) => {
       if (object instanceof Mesh) {
@@ -67,6 +68,7 @@ const Model = () => {
       friction={1} 
       linearDamping={0.5}
       angularDamping={0.5}
+      scale={widthSize < 400 ? 0.5 : 1}
     >
       <primitive object={model.scene} />
     </RigidBody>

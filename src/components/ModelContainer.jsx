@@ -102,7 +102,7 @@ export const ModelContainer = () => {
           <Label
             target="Seat"
             isHover={isHover}
-            btnEvent={inside()}
+            btnEvent={inside(widthSize)}
           />
         </ul>
       </div>

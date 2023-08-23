@@ -25,10 +25,10 @@ export const threeSlice = createSlice({
       state.cameraPosition = { x: 0, y: 2, z: -4 };
       state.targetPosition = { x: 0, y: 0.5, z: 0 };
     },
-    inside: state => {
+    inside: (state, { payload }) => {
       state.checked = 'Seat';
-      state.cameraPosition = { x: 0, y: 0.9, z: -0.2 };
-      state.targetPosition = { x: 0.2, y: 0.6, z: 0.8 };
+      state.cameraPosition = { x: 0, y: payload < 400 ? 0.5 : 0.9, z: payload < 400 ? -0.2 : -0.2 };
+      state.targetPosition = { x: 0.2, y: payload < 400 ? 0.3 : 0.6, z: payload < 400 ? 1.2 : 0.8 };
     },
     side: state => {
       state.checked = 'Side';
